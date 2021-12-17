@@ -10,10 +10,11 @@ namespace UCom.me.krymz0n.ucom.command
 {
     public class CommandManager
     {
-        ArrayList Coms = new ArrayList();
-        HelloWorld HW = new HelloWorld();
+       List<Command> Coms = new List<Command>();
 
-        Coms.Add(HelloWorld();
-
+        public CommandManager()
+        {
+            Coms.Add(new HelloWorld());
+        }
     }
 }

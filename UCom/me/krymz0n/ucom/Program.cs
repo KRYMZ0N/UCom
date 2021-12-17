@@ -10,7 +10,7 @@ class Program
         Console.WriteLine("Hello World");
         GameLoop GL = new GameLoop();
         Command CM = new Command("test", "test");
-        HelloWorld HW = new HelloWorld("H", CM.getKey());
+        HelloWorld HW = new HelloWorld();
         Console.WriteLine("Launched");
 
         String input = Console.ReadLine();

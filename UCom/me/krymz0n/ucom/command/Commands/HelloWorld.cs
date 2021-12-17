@@ -8,13 +8,11 @@ namespace UCom.me.krymz0n.ucom.command.Commands
 {
     public class HelloWorld : Command
     {
-        private String ModName;
-        private String ModKey;
 
-        public HelloWorld(String name, String key) : base(name, key)
+        public HelloWorld(String name = "Hello World Command!", String key = "helloworld") : base(name, key)
         {
-            ModName = name;
-            ModKey = key;
+            this.name = name;
+            this.key = key;
         }
 
         public void Start()
