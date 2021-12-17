@@ -11,21 +11,49 @@ class Program
         GameLoop GL = new GameLoop();
         Command CM = new Command("test", "test");
         HelloWorld HW = new HelloWorld();
-        Console.WriteLine("Launched");
+        Console.WriteLine("Launched\n");
+        Console.Write("UCom v0.0>> ");
 
-        String input = Console.ReadLine();
+        String Input = Console.ReadLine();
 
-        while (GL.isOn())
+        String HKey = HW.getKey();
+
+        while (GL.isOn()) //Loop
         {
-            if (input.Equals(HW.getKey()))
+
+            if (Input.Equals(HW.getKey()))
             {
                 HW.Start();
                 Console.WriteLine("You have launched: " + HW.getKey());
-                input = Console.ReadLine();
+                Console.Write("UCom v0.0>> ");
+                Input = Console.ReadLine();
             } else
             {
-                Console.WriteLine("I'm sorry, I am not sure what you mean, try typing something else");
-                input = Console.ReadLine();
+                if (Input.Equals(""))
+                {
+                    Console.Write("UCom v0.0>> ");
+                    Input = Console.ReadLine();
+                }
+                else
+                {
+
+                    Console.WriteLine("I'm sorry, I am not sure what you mean, try typing something else");
+                    Console.Write("UCom v0.0>> ");
+                    Input = Console.ReadLine();
+                }
+            }
+
+            switch (Input)
+            {
+                case HKey:
+                    {
+                        break;
+                    }
+                default:
+                    Console.WriteLine("I'm sorry, I am not sure what you mean, try typing something else");
+                    Console.Write("UCom v0.0>> ");
+                    Input = Console.ReadLine();
+                    break;
             }
         }
     }
