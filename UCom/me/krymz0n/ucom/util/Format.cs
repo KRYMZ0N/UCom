@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,14 +8,50 @@ using System.Threading.Tasks;
 namespace UCom.me.krymz0n.ucom.util
 {
     public class Format
-
     {
-        public String Input = Console.ReadLine();
+        private string user = ReadSpecificLine("config.ucom", 1);
+        private string pass = ReadSpecificLine("config.ucom", 2);
 
-        public String cmdLine()
-        {
-            Console.WriteLine("UCom v0.0 >>");
-            return Input;
+        public string User()
+        { // scrapping the user in the string
+            String i = user.Replace("User: ", "");
+            return i;
+        }
+
+        public string Pass()
+        { // scrapping the pass in the string
+            String i = pass.Replace("Pass: ", "");
+            return i;
+        }
+
+        public static string ReadSpecificLine(string filePath, int lineNumber)
+        { // finds specific line in a file
+            string content = null;
+            try
+            {
+                using (StreamReader file = new StreamReader(filePath))
+                {
+                    for (int i = 1; i < lineNumber; i++)
+                    {
+                        file.ReadLine();
+
+                        if (file.EndOfStream)
+                        {
+                            Console.WriteLine($"End of file.  The file only contains {i} lines.");
+                            break;
+                        }
+                    }
+                    content = file.ReadLine();
+                }
+
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("There was an error reading the file: ");
+                Console.WriteLine(e.Message);
+            }
+
+            return content;
         }
     }
 }
