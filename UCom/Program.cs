@@ -3,133 +3,138 @@ using commands;
 using util;
 using loop;
 
-class Program
+namespace main 
 {
-    public static void Main(string[] args)
+    class Program
     {
-
-        Console.WriteLine("Hello World");
-        GameLoop GL = new GameLoop();
-        Command CM = new Command("test", "test");
-        CommandManager comMan = new CommandManager();
-        HelloWorld HW = new HelloWorld();
-        Format f = new Format();
-
-        if (File.Exists("config.ucom"))
+        public static String Input;
+        public static void Main(string[] args)
         {
-            Console.WriteLine("You are prompted to log in!");
 
-            Console.Write("User: ");
-        }
-        else
-        {
-            Console.WriteLine("Press Enter!");
-            Console.Write("Login>> ");
-
-        }
-
-        String Input = Console.ReadLine();
-
-        String HKey = HW.getKey();
-
-        int i = 1;
-
-        while (i == 1)
-        {
+            Console.WriteLine("Hello World");
+            GameLoop GL = new GameLoop();
+            Command CM = new Command("test", "test");
+            CommandManager comMan = new CommandManager();
+            HelloWorld HW = new HelloWorld();
+            Format f = new Format();
+            Program p = new Program();
 
             if (File.Exists("config.ucom"))
             {
+                Console.WriteLine("You are prompted to log in!");
 
-                StreamReader sr = new StreamReader("config.ucom");
+                Console.Write("User: ");
+            }
+            else
+            {
+                Console.WriteLine("Press Enter!");
+                Console.Write("Login>> ");
 
-                int j = 1;
-                int k = 1;
+            }
 
-                while (j == 1)
-                { // Checking to see if the users input is the pass and user. Then looping through that
-                    if (f.User() != null)
-                    {
-                        if (!f.User().Equals(Input))
+            Input = Console.ReadLine();
+
+            String HKey = HW.getKey();
+
+            int i = 1;
+
+            while (i == 1)
+            {
+
+                if (File.Exists("config.ucom"))
+                {
+
+                    StreamReader sr = new StreamReader("config.ucom");
+
+                    int j = 1;
+                    int k = 1;
+
+                    while (j == 1)
+                    { // Checking to see if the users input is the pass and user. Then looping through that
+                        if (f.User() != null)
                         {
-                            Console.WriteLine("You are prompted to log in!");
-                            Console.Write("User: ");
-                            Input = Console.ReadLine();
-                        }
-                        else
-                        {
-                            Console.Write("Pass: ");
-                            Input = Console.ReadLine();
-                            while (k == 1)
+                            if (!f.User().Equals(Input))
                             {
-                                if (f.Pass() != null)
+                                Console.WriteLine("You are prompted to log in!");
+                                Console.Write("User: ");
+                                Input = Console.ReadLine();
+                            }
+                            else
+                            {
+                                Console.Write("Pass: ");
+                                Input = Console.ReadLine();
+                                while (k == 1)
                                 {
-                                    if (!f.Pass().Equals(Input))
+                                    if (f.Pass() != null)
                                     {
-                                        Console.Write("Pass: ");
-                                        Input = Console.ReadLine();
-                                    }
-                                    else
-                                    {
-                                        i = 0;
-                                        j = 0;
-                                        k = 0;
+                                        if (!f.Pass().Equals(Input))
+                                        {
+                                            Console.Write("Pass: ");
+                                            Input = Console.ReadLine();
+                                        }
+                                        else
+                                        {
+                                            i = 0;
+                                            j = 0;
+                                            k = 0;
+                                        }
                                     }
                                 }
                             }
                         }
                     }
+
                 }
-
-            }
-            else
-            {
-                // All file writing stuff.
-                Console.WriteLine("Please register a Username");
-
-                Console.Write("User: ");
-                Input = Console.ReadLine();
-                using (StreamWriter sw = new StreamWriter("config.ucom", append: true))
+                else
                 {
-                    sw.WriteLine("User: " + Input);
+                    // All file writing stuff.
+                    Console.WriteLine("Please register a Username");
 
-                    Console.Write("Pass: ");
-
+                    Console.Write("User: ");
                     Input = Console.ReadLine();
+                    using (StreamWriter sw = new StreamWriter("config.ucom", append: true))
+                    {
+                        sw.WriteLine("User: " + Input);
 
-                    sw.WriteLine("Pass: " + Input);
-                    i = 0;
+                        Console.Write("Pass: ");
+
+                        Input = Console.ReadLine();
+
+                        sw.WriteLine("Pass: " + Input);
+                        i = 0;
+                    }
                 }
             }
-        }
 
-        Console.WriteLine("You are Logged in!");
-        Console.Write("UCom v0.0>> ");
+            Console.WriteLine("You are Logged in!");
+            Console.Write("UCom v0.0>> ");
 
-        while (GL.isOn()) //Loop
-        {
-            Input = Console.ReadLine();
-            bool temp = false;
-            foreach (Command cm in comMan.getComs())
+            while (GL.isOn()) //Loop
             {
-                if (Input.Equals(cm.getKey()))
+                bool temp = false;
+                Input = Console.ReadLine();
+                foreach (Command cm in comMan.getComs())
                 {
-                    cm.Start();
-                    Console.WriteLine("You have launched: " + cm.getKey());
-                    Console.Write("UCom v0.0>> ");
-                    temp = true;
-                    break;
+                    if (Input.Contains(cm.getKey()))
+                    {
+                        cm.Start();
+                        Console.WriteLine("You have launched: " + cm.getKey());
+                        //Console.Write("UCom v0.0>> ");
+                        temp = true;
+                        break;
+                    }
                 }
-            }
-            if (Input.Equals(""))
-            {
-                if (temp == false)
-                Console.Write("UCom v0.0>> ");
-            }
-            else
-            {
-                if (temp == false)
-                Console.WriteLine("I'm sorry, I am not sure what you mean, try typing something else");
-                Console.Write("UCom v0.0>> ");
+                if (Input.Equals(""))
+                {
+                    if (temp == false)
+                    Console.Write("UCom v0.0>> ");
+                }
+                else
+                {
+                    if (temp == false)
+                    Console.WriteLine("I'm sorry, I am not sure what you mean, try typing something else");
+                    Console.Write("UCom v0.0>> "); 
+                }
             }
         }
     }

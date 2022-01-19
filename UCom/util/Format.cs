@@ -10,7 +10,7 @@ namespace util
     public class Format
     {
         private string user = ReadSpecificLine("config.ucom", 1);
-        private string pass = ReadSpecificLine("config.ucom", 2);
+        public string pass = ReadSpecificLine("config.ucom", 2);
 
         public string User()
         { // scrapping the user in the string
