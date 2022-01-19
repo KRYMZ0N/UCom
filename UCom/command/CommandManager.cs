@@ -17,6 +17,7 @@ namespace commands
             Coms.Add(new HelloWorld());
             Coms.Add(new ping());
             Coms.Add(new pswrd());
+            Coms.Add(new addcom());
         }
 
         public List<Command> getComs()

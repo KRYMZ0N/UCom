@@ -53,5 +53,19 @@ namespace util
 
             return content;
         }
+
+        public bool isInteger(string s) 
+        {
+            try 
+            { 
+                int.Parse(s);
+                
+            } catch(FormatException e) 
+            { 
+                return false; 
+            }
+            // only got here if we didn't return false
+        return true;
+        }
     }
 }
