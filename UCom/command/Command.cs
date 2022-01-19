@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UCom.me.krymz0n.ucom.command.Commands
+namespace commands
 {
     public class Command
     {
@@ -25,6 +25,11 @@ namespace UCom.me.krymz0n.ucom.command.Commands
         public String getName()
         {
             return name;
+        }
+
+        public virtual void Start()
+        {
+
         }
     }
 }

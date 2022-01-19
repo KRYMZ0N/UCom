@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UCom.me.krymz0n.ucom.util {
+namespace loop {
     internal class GameLoop
     {
         public int i = 1;

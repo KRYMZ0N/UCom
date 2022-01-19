@@ -4,17 +4,23 @@ using System.Linq;
 using System.Collections;
 using System.Text;
 using System.Threading.Tasks;
-using UCom.me.krymz0n.ucom.command.Commands;
+using commands;
 
-namespace UCom.me.krymz0n.ucom.command
+namespace commands
 {
     public class CommandManager
     {
-       List<Command> Coms = new List<Command>();
+       public List<Command> Coms = new List<Command>();
 
         public CommandManager()
         {
             Coms.Add(new HelloWorld());
+            Coms.Add(new ping());
+        }
+
+        public List<Command> getComs()
+        {
+            return Coms;
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UCom.me.krymz0n.ucom.util
+namespace util
 {
     public class Format
     {

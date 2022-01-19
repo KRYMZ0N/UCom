@@ -1,6 +1,7 @@
 ﻿using System;
-using UCom.me.krymz0n.ucom.command.Commands;
-using UCom.me.krymz0n.ucom.util;
+using commands;
+using util;
+using loop;
 
 class Program
 {
@@ -10,6 +11,7 @@ class Program
         Console.WriteLine("Hello World");
         GameLoop GL = new GameLoop();
         Command CM = new Command("test", "test");
+        CommandManager comMan = new CommandManager();
         HelloWorld HW = new HelloWorld();
         Format f = new Format();
 
@@ -107,28 +109,30 @@ class Program
         while (GL.isOn()) //Loop
         {
 
-            if (Input.Equals(HW.getKey()))
+            foreach (Command cm in comMan.getComs())
             {
-                HW.Start();
-                Console.WriteLine("You have launched: " + HW.getKey());
-                Console.Write("UCom v0.0>> ");
-                Input = Console.ReadLine();
-            } else
-            {
-                if (Input.Equals(""))
+                if (Input.Equals(cm.getKey()))
                 {
+                    cm.Start();
+                    Console.WriteLine("You have launched: " + cm.getKey());
                     Console.Write("UCom v0.0>> ");
                     Input = Console.ReadLine();
-                }
-                else
+                } else
                 {
+                    if (Input.Equals(""))
+                    {
+                        Console.Write("UCom v0.0>> ");
+                        Input = Console.ReadLine();
+                    }
+                    else
+                    {
 
-                    Console.WriteLine("I'm sorry, I am not sure what you mean, try typing something else");
-                    Console.Write("UCom v0.0>> ");
-                    Input = Console.ReadLine();
+                        Console.WriteLine("I'm sorry, I am not sure what you mean, try typing something else");
+                        Console.Write("UCom v0.0>> ");
+                        Input = Console.ReadLine();
+                    }
                 }
             }
-
         }
     }
 }

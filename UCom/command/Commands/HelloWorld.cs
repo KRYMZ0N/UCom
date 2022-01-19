@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UCom.me.krymz0n.ucom.command.Commands
+namespace commands
 {
     public class HelloWorld : Command
     {
@@ -15,7 +15,7 @@ namespace UCom.me.krymz0n.ucom.command.Commands
             this.key = key;
         }
 
-        public void Start()
+        public override void Start()
         {
             Console.WriteLine("HelloWorld");
         }
