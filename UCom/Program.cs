@@ -104,11 +104,11 @@ class Program
 
         Console.WriteLine("You are Logged in!");
         Console.Write("UCom v0.0>> ");
-        Input = Console.ReadLine();
 
         while (GL.isOn()) //Loop
         {
-
+            Input = Console.ReadLine();
+            bool temp = false;
             foreach (Command cm in comMan.getComs())
             {
                 if (Input.Equals(cm.getKey()))
@@ -116,22 +116,20 @@ class Program
                     cm.Start();
                     Console.WriteLine("You have launched: " + cm.getKey());
                     Console.Write("UCom v0.0>> ");
-                    Input = Console.ReadLine();
-                } else
-                {
-                    if (Input.Equals(""))
-                    {
-                        Console.Write("UCom v0.0>> ");
-                        Input = Console.ReadLine();
-                    }
-                    else
-                    {
-
-                        Console.WriteLine("I'm sorry, I am not sure what you mean, try typing something else");
-                        Console.Write("UCom v0.0>> ");
-                        Input = Console.ReadLine();
-                    }
+                    temp = true;
+                    break;
                 }
+            }
+            if (Input.Equals(""))
+            {
+                if (temp == false)
+                Console.Write("UCom v0.0>> ");
+            }
+            else
+            {
+                if (temp == false)
+                Console.WriteLine("I'm sorry, I am not sure what you mean, try typing something else");
+                Console.Write("UCom v0.0>> ");
             }
         }
     }
