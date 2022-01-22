@@ -9,7 +9,7 @@ namespace util
 {
     public class Format
     {
-        private string user = ReadSpecificLine("config.ucom", 1);
+        public string user = ReadSpecificLine("config.ucom", 1);
         public string pass = ReadSpecificLine("config.ucom", 2);
 
         public string User()

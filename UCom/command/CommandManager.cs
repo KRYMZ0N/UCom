@@ -10,7 +10,7 @@ namespace commands
 {
     public class CommandManager
     {
-       public List<Command> Coms = new List<Command>();
+       public static List<Command> Coms = new List<Command>();
 
         public CommandManager()
         {
@@ -18,9 +18,12 @@ namespace commands
             Coms.Add(new ping());
             Coms.Add(new pswrd());
             Coms.Add(new addcom());
+            Coms.Add(new Help());
+            Coms.Add(new usr());
+            Coms.Add(new logout());
         }
 
-        public List<Command> getComs()
+        public static List<Command> getComs()
         {
             return Coms;
         }

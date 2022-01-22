@@ -7,18 +7,55 @@ namespace main
 {
     class Program
     {
-        public static String Input;
+        public static String? Input;
+        static GameLoop GL = new GameLoop();
+        static Command CM = new Command("test", "test");
+        static CommandManager comMan = new CommandManager();
+        static HelloWorld HW = new HelloWorld();
+        static Format f = new Format();
+        static Program p = new Program();
         public static void Main(string[] args)
         {
 
-            Console.WriteLine("Hello World");
-            GameLoop GL = new GameLoop();
-            Command CM = new Command("test", "test");
-            CommandManager comMan = new CommandManager();
-            HelloWorld HW = new HelloWorld();
-            Format f = new Format();
-            Program p = new Program();
+            
+                    // All file writing stuff.
+            runStartupCode();
+        
 
+            Console.WriteLine("You are Logged in!");
+            Console.Write("UCom v0.0>> ");
+
+            while (GL.isOn()) //Loop
+            {
+                bool temp = false;
+                Input = Console.ReadLine();
+                foreach (Command cm in CommandManager.getComs())
+                {
+                    if (Input.Contains(cm.getKey()))
+                    {
+                        cm.Start();
+                        Console.WriteLine("You have launched: " + cm.getKey());
+                        //Console.Write("UCom v0.0>> ");
+                        temp = true;
+                        break;
+                    }
+                }
+                if (Input.Equals(""))
+                {
+                    if (temp == false)
+                    Console.Write("UCom v0.0>> ");
+                }
+                else
+                {
+                    if (temp == false)
+                    Console.WriteLine("I'm sorry, I am not sure what you mean, try typing something else");
+                    Console.Write("UCom v0.0>> "); 
+                }
+            }
+        }
+    
+
+        public static void runStartupCode() {
             if (File.Exists("config.ucom"))
             {
                 Console.WriteLine("You are prompted to log in!");
@@ -83,57 +120,39 @@ namespace main
                             }
                         }
                     }
+                } else {
 
-                }
-                else
-                {
-                    // All file writing stuff.
-                    Console.WriteLine("Please register a Username");
-
-                    Console.Write("User: ");
-                    Input = Console.ReadLine();
                     using (StreamWriter sw = new StreamWriter("config.ucom", append: true))
                     {
+                        int l = 1;
+
+                        while (l == 1)
+                        {
+                        Console.WriteLine("Please register a Username");
+
+                        Console.Write("User: ");
+
+                        Input = Console.ReadLine();
+
+
+                        if (Input != "") {
                         sw.WriteLine("User: " + Input);
+                        }
+                        
 
                         Console.Write("Pass: ");
 
                         Input = Console.ReadLine();
 
+                        if (Input != "") {
                         sw.WriteLine("Pass: " + Input);
+                        sw.Close();
+                    
                         i = 0;
+                        l = 0;
+                        }
+                        }
                     }
-                }
-            }
-
-            Console.WriteLine("You are Logged in!");
-            Console.Write("UCom v0.0>> ");
-
-            while (GL.isOn()) //Loop
-            {
-                bool temp = false;
-                Input = Console.ReadLine();
-                foreach (Command cm in comMan.getComs())
-                {
-                    if (Input.Contains(cm.getKey()))
-                    {
-                        cm.Start();
-                        Console.WriteLine("You have launched: " + cm.getKey());
-                        //Console.Write("UCom v0.0>> ");
-                        temp = true;
-                        break;
-                    }
-                }
-                if (Input.Equals(""))
-                {
-                    if (temp == false)
-                    Console.Write("UCom v0.0>> ");
-                }
-                else
-                {
-                    if (temp == false)
-                    Console.WriteLine("I'm sorry, I am not sure what you mean, try typing something else");
-                    Console.Write("UCom v0.0>> "); 
                 }
             }
         }

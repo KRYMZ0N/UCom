@@ -1,22 +1,15 @@
 using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using util;
 using main;
 
-namespace commands 
-{
+namespace commands {
+    
+    public class usr : Command {
 
-    public class pswrd : Command 
-    {
-        Program p;
-        Format f = new Format();
         InputUtil IU = new InputUtil();
 
-        public pswrd(String name = "password command", String key = "pswrd") : base(name, key) 
+
+        public usr(String name = "username command", String key = "usr") : base(name, key) 
         {
             this.name = name;
             this.key = key;
@@ -31,17 +24,17 @@ namespace commands
                 Console.WriteLine("Hello");
                 if (args.Length >= 3) 
                 {
-                    string user = Format.ReadSpecificLine("config.ucom", 1);
+                    string pass = Format.ReadSpecificLine("config.ucom", 2);
             
                     using (StreamWriter sw = new StreamWriter("config.ucom", append: false))
                     {
-                        sw.WriteLine(user);
-                        sw.WriteLine("Pass: " + args[2]);
+                        sw.WriteLine("User: " + args[2]);
+                        sw.WriteLine(pass);
 
                         sw.Close();
                     }
 
-                    Console.WriteLine("Password Updated Successfully!");
+                    Console.WriteLine("Username Updated Successfully!");
                 }
             }
 
