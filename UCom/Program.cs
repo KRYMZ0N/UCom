@@ -17,11 +17,9 @@ namespace main
         public static void Main(string[] args)
         {
 
-            
                     // All file writing stuff.
             runStartupCode();
-        
-
+    
             Console.WriteLine("You are Logged in!");
             Console.Write("UCom v0.0>> ");
 
@@ -128,29 +126,27 @@ namespace main
 
                         while (l == 1)
                         {
-                        Console.WriteLine("Please register a Username");
+                            Console.WriteLine("Please register a User!");
 
-                        Console.Write("User: ");
+                            Console.Write("User: ");
 
-                        Input = Console.ReadLine();
+                            Input = Console.ReadLine();
 
 
-                        if (Input != "") {
-                        sw.WriteLine("User: " + Input);
-                        }
-                        
+                            if (Input != "") {
+                                sw.WriteLine("User: " + Input);
+                                
+                                Console.Write("Pass: ");
 
-                        Console.Write("Pass: ");
+                                Input = Console.ReadLine();
 
-                        Input = Console.ReadLine();
-
-                        if (Input != "") {
-                        sw.WriteLine("Pass: " + Input);
-                        sw.Close();
-                    
-                        i = 0;
-                        l = 0;
-                        }
+                                if (Input != "") {
+                                    sw.WriteLine("Pass: " + Input);
+                                    sw.Close();
+                                    i = 0;
+                                    l = 0;     
+                                }
+                            }
                         }
                     }
                 }
