@@ -21,6 +21,7 @@ namespace commands
             Coms.Add(new Help());
             Coms.Add(new usr());
             Coms.Add(new logout());
+            Coms.Add(new echo());
         }
 
         public static List<Command> getComs()

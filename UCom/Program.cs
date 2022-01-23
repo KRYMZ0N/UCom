@@ -53,7 +53,8 @@ namespace main
         }
     
 
-        public static void runStartupCode() {
+        public static void runStartupCode() 
+        {
             if (File.Exists("config.ucom"))
             {
                 Console.WriteLine("You are prompted to log in!");
@@ -133,23 +134,38 @@ namespace main
                             Input = Console.ReadLine();
 
 
-                            if (Input != "") {
-                                sw.WriteLine("User: " + Input);
+                            if (Input != "") 
+                            {
+                                string possibleUser = Input;
                                 
                                 Console.Write("Pass: ");
 
                                 Input = Console.ReadLine();
 
-                                if (Input != "") {
+                                if (Input != "") 
+                                {
+                                    sw.WriteLine("User: " + possibleUser);
                                     sw.WriteLine("Pass: " + Input);
+
                                     sw.Close();
-                                    i = 0;
-                                    l = 0;     
+                                    
+
+                                    l = 0;
+                                    i = 0;     
                                 }
                             }
                         }
                     }
                 }
+            }
+        }
+
+        public static void reform() {
+            StreamReader sr = new StreamReader("config.ucom");
+            using (StreamWriter sw = new StreamWriter("config.ucom", append: true))
+            {
+                string line1 = Format.ReadSpecificLine("config.ucom", 2);
+                string line2;
             }
         }
     }
