@@ -22,6 +22,7 @@ namespace commands
             Coms.Add(new usr());
             Coms.Add(new logout());
             Coms.Add(new echo());
+            Coms.Add(new rand());
         }
 
         public static List<Command> getComs()
